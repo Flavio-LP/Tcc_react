@@ -1,24 +1,21 @@
-import logo from './logo.svg';
+/* eslint-disable react/jsx-pascal-case */
+
 import './App.css';
+import HomePage from './homepage/homepage';
+import Chart from './Charts/Chart'
+import Chart_vento from './Charts/Chart_vento'
+import Footer from './homepage/Footer'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <HomePage />
+      <div class = 'Chart'>
+        <Chart/>
+        <Chart_vento  class= 'Chart_vento'/>
+      </div>
+      <Footer />
+    </>
   );
 }
 
