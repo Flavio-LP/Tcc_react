@@ -1,7 +1,19 @@
-
+import axios from 'axios';
 import ApexChart from 'react-apexcharts';
 
 export default function Chart() {
+  let data_irr
+
+  /*axios.get("localhost:3305")
+  .then((response) => {
+   data_irr= (response.data);
+
+
+  }).catch(function (error) {
+    // handle error
+    console.log(error);
+  });
+  console.log(data_irr[0])*/
 
   const options = {
     xaxis: {
@@ -33,6 +45,7 @@ export default function Chart() {
 
   const series = [{
     name: 'Irradiação Solar  Wh/m2',
+    //data: data_irr
     data: [0,510,520,500,535.8,560.10,520,530,498,525,500,470,550,535,0]
   }]
   
