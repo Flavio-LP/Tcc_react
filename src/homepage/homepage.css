@@ -1,0 +1,59 @@
+body {
+	margin: 0;
+	padding: 0;
+	font-family: Arial, sans-serif;
+    background-color: roxo;
+}
+
+header {
+	background-color: #333;
+	color: #fff;
+	padding: 20px;
+	text-align: center;
+}
+
+header h1 {
+	margin: 0;
+}
+
+main {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	padding: 20px;
+}
+
+section {
+	margin: 50px;
+}
+
+.Painel_solar{
+    margin-right: 20%;
+}
+
+.Turbina_eolica{
+    margin-left: 20%;
+}
+
+.titulo {
+	text-align: center;
+}
+
+.subtitulos {
+	margin-top: 20px;
+}
+
+h2 {
+	margin-top: 0;
+}
+
+ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+li {
+	margin-bottom: 10px;
+}
+
