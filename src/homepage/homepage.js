@@ -17,6 +17,7 @@ function HomePage() {
 				<ul>
 					<li>Média de Tensão:</li>
 					<li>Média de Corrente:</li>
+					<li>Média de potência:</li>
 				</ul>
 			</div>
 		</section>
@@ -29,6 +30,7 @@ function HomePage() {
 				<ul>
 					<li>Média de Tensão:</li>
 					<li>Média de Corrente:</li>
+					<li>Média de potência:</li>
 				</ul>
 			</div>
 		</section>
