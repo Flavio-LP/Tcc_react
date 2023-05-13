@@ -3,8 +3,7 @@ const connection = require('./connection');
 let vetor = [6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
 
 
-const buscas = async() =>{
-
+const buscas = async(data) =>{
     let query = []
     let day
 
@@ -15,7 +14,7 @@ const buscas = async() =>{
                                             'FROM ' +
                                                     'projeto_tcc T' +
                                             ' WHERE '+
-                                                    'date_format(T.DATA_CAPTURA, "%d/%m/%Y") = "06/05/2023"'+
+                                                    'date_format(T.DATA_CAPTURA, "%d/%m/%Y") = "' +data +'"' +
                                             ' AND '+
                                                    'date_format(T.DATA_CAPTURA, "%H:%i")'+ 
                                             '='+
@@ -24,7 +23,7 @@ const buscas = async() =>{
                                                 'FROM ' +	
                                                         'projeto_tcc P' +
                                                 ' WHERE ' +
-                                                        'date_format(P.DATA_CAPTURA, "%d/%m/%Y") = "06/05/2023"'+
+                                                        'date_format(P.DATA_CAPTURA, "%d/%m/%Y") = "' +data +'"' +
                                                 ' LIMIT 1'+
                                                 ' )'+
                                             ' LIMIT '+ 
@@ -37,7 +36,7 @@ const buscas = async() =>{
                 query.push((day[0][0]['IRRADIACAO_SOLAR_PLACA']).toFixed(2))
         } 
         }
-  
+        console.log(data)
 
     return query;
 

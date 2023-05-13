@@ -7,13 +7,14 @@ export default function Chart() {
 
     const [irr,setIrr] = useState()  
     useEffect(() => {
-      api
+       api
         .get("/")
-        .then((response) => setIrr(response.data))
+        .then(( response) => setIrr(response.data))
         .catch((err) => {
           console.error("ops! ocorreu um erro" + err);
         });
     }, []);
+
 
 
 const options = {

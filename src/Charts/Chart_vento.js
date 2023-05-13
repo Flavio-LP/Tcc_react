@@ -4,6 +4,7 @@ import ApexChart from 'react-apexcharts';
 
 export default function Chart() {
 
+
   const [vento,setVento] = useState()  
   useEffect(() => {
     api
