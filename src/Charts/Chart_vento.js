@@ -1,12 +1,14 @@
 import api from '../Api/api_vento'
 import { useEffect, useState } from 'react';
 import ApexChart from 'react-apexcharts';
+import HomePage from '../homepage/homepage';
 
 export default function Chart() {
 
-
+  
   const [vento,setVento] = useState()  
   useEffect(() => {
+    console.log('testes')
     api
       .get("/")
       .then((response) => setVento(response.data))
@@ -45,11 +47,10 @@ export default function Chart() {
 
   const series = [{
     name: 'Velocidade do vento - Km/h',
-    data:vento
+    data: vento
     //data: [0,9.98,0,6.65,16.63, 6.65,0,0,24.47,40,0,0,3.25,0,0]
   }]
   
-
 
 
   return(

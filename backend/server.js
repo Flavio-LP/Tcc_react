@@ -2,6 +2,7 @@
 const express = require('express');
 const buscas = require('./buscas')
 const vento = require('./vento')
+const POTENCIA_PLACA=require('./potencia_placa')
 let data;
 const app = express();
 
@@ -19,6 +20,8 @@ const PORT = 3305;
 
 app.listen(PORT , () => { console.log (`Rodando na porta ${PORT}`)})
 
+
+
 app.get('/' , async (req, res)=>{
     res.header('Access-Control-Allow-Origin', '*');
     const query = await buscas(data);
@@ -28,6 +31,7 @@ app.get('/' , async (req, res)=>{
 app.get('/vento', async(req,res)=> {
 
     res.header('Access-Control-Allow-Origin', '*');
+    console.log('1')
     const query = await vento(data);
     return res.status(201).json(query);
 })
@@ -37,3 +41,9 @@ app.post("/data", (req, res) => {
     return res.status(201).json(req.body);
     
   });
+
+  app.get('/potencia_placa', async(req,res)=> {
+    res.header('Access-Control-Allow-Origin', '*');
+    const query = await POTENCIA_PLACA(data);
+    return res.status(201).json(query);
+})

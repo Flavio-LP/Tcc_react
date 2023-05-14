@@ -3,14 +3,14 @@ const connection = require('./connection');
 let vetor = [6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
 
 
-const buscas = async(data) =>{
+const POTENCIA_PLACA = async(data) =>{
     let query = []
-    let day
+    let pot,sum
 
     for (let index = 0; index < vetor.length; index++) {
 
-      day = await connection.execute(' SELECT '+
-                                                    'T.IRR_SOLAR AS IRRADIACAO_SOLAR_PLACA '+
+      pot = await connection.execute(' SELECT '+
+                                                    'T.POTENCIA_PLACA AS POTENCIA_PLACA '+
                                             'FROM ' +
                                                     'projeto_tcc T' +
                                             ' WHERE '+
@@ -29,16 +29,18 @@ const buscas = async(data) =>{
                                             ' LIMIT '+ 
                                                     '1 '
                                             )
-        if (day[0][0] == undefined){
+        if (pot[0][0] == undefined){
                 
                 query.push("0.00")
         }else{
-                query.push((day[0][0]['IRRADIACAO_SOLAR_PLACA']).toFixed(2))
+                query.push((pot[0][0]['POTENCIA_PLACA']).toFixed(2))
+                sum = sum + (pot[0][0]['POTENCIA_PLACA']).toFixed(2)
         } 
         }
+        console.log (sum)
 
-    return query;
+    return sum;
 
 }
 
-module.exports = buscas;
+module.exports = POTENCIA_PLACA;

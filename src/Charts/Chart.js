@@ -6,14 +6,16 @@ import ApexChart from 'react-apexcharts';
 export default function Chart() {
 
     const [irr,setIrr] = useState()  
-    useEffect(() => {
-       api
-        .get("/")
-        .then(( response) => setIrr(response.data))
-        .catch((err) => {
-          console.error("ops! ocorreu um erro" + err);
-        });
-    }, []);
+    api
+    .get("/")
+    .then(( response) => setIrr(response.data))
+    .catch((err) => {
+      console.error("ops! ocorreu um erro" + err);
+    });
+    
+    /*useEffect(() => {
+      
+    }, []);*/
 
 
 

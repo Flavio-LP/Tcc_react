@@ -1,19 +1,18 @@
 import './homepage.css'
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import axios from 'axios';
-import Chart from '../Charts/Chart'
-import Chart_vento from '../Charts/Chart_vento'
+import api from '../Api/api_potencia_placa'
 
 export function HomePage() {
 
 	const [value, onChange] = useState(new Date());
-	let dia,mês;
+	let dia, mês;
 	if (parseInt(value.getDate()) > 0 && parseInt(value.getDate()) < 10) {
 		dia = '0' + value.getDate()
 
-	}else{
+	} else {
 
 		dia = value.getDate();
 	} if (parseInt(value.getMonth()) > 0 && parseInt(value.getMonth()) < 10) {
@@ -21,8 +20,18 @@ export function HomePage() {
 	}
 	let data = dia + '/' + '05' + '/' + value.getFullYear();
 	console.log(data)
+
+	
 	axios.post("http://localhost:3305/data", { Data_calendario: data })
 		.then().catch(erro => console.log(erro))
+
+	const [potencia_placa = 0, setPotencia_placa] = useState()
+	api
+		.get("/potencia_placa")
+		.then((response) => setPotencia_placa(response.data))
+		.catch((err) => {
+			console.error("ops! ocorreu um erro" + err);
+		});
 
 	return (
 		<div id='page'>
@@ -39,12 +48,12 @@ export function HomePage() {
 						<ul>
 							<li>Média de Tensão:</li>
 							<li>Média de Corrente:</li>
-							<li>Média de potência:</li>
+							<li>Média de potência:{potencia_placa}</li>
 						</ul>
 					</div>
 				</section>
 
-				<Calendar id= 'calend' onChange={onChange} value={value} />
+				<Calendar id='calend' onChange={onChange} value={value} />
 
 				<section class="Turbina_eolica">
 					<div class="titulo">
@@ -59,12 +68,7 @@ export function HomePage() {
 					</div>
 				</section>
 			</main>
-			
 
-			<div class = 'Chart'>
-        		<Chart/>
-        		<Chart_vento  class= 'Chart_vento'/>
-      		</div>
 
 		</div>
 	);
