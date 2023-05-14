@@ -3,7 +3,7 @@ const connection = require('./connection');
 let vetor = [6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
 
 
-const POTENCIA_PLACA = async(data) =>{
+const POTENCIA_TURBINA = async(data) =>{
     let query = []
     let pot,sum = 0,aux
 
@@ -37,10 +37,9 @@ const POTENCIA_PLACA = async(data) =>{
                 sum = sum + aux
         } 
         }
-        console.log (sum/query.length)
 
     return sum/query.length;
 
 }
 
-module.exports = POTENCIA_PLACA;
+module.exports = POTENCIA_TURBINA;

@@ -3,7 +3,7 @@ const connection = require('./connection');
 let vetor = [6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
 
 
-const POTENCIA_PLACA = async() =>{
+const POTENCIA_PLACA = async(data) =>{
     let query = []
     let pot,sum = 0,aux
 
@@ -14,7 +14,7 @@ const POTENCIA_PLACA = async() =>{
                                             'FROM ' +
                                                     'projeto_tcc T' +
                                             ' WHERE '+
-                                                    'date_format(T.DATA_CAPTURA, "%d/%m/%Y") = "' +'05/05/2023' +'"' +
+                                                    'date_format(T.DATA_CAPTURA, "%d/%m/%Y") = "' + data +'"' +
                                             ' AND '+
                                                    'date_format(T.DATA_CAPTURA, "%H:%i")'+ 
                                             '='+
@@ -23,12 +23,13 @@ const POTENCIA_PLACA = async() =>{
                                                 'FROM ' +	
                                                         'projeto_tcc P' +
                                                 ' WHERE ' +
-                                                        'date_format(P.DATA_CAPTURA, "%d/%m/%Y") = "' +'05/05/2023' +'"' +
+                                                        'date_format(P.DATA_CAPTURA, "%d/%m/%Y") = "' + data +'"' +
                                                 ' LIMIT 1'+
                                                 ' )'+
                                             ' LIMIT '+ 
                                                     '1 '
-                                            )
+                                            ) 
+                                            
         if (pot[0][0] == undefined){
                 query.push("0.00")
         }else{
@@ -37,9 +38,7 @@ const POTENCIA_PLACA = async() =>{
                 sum = sum + aux
         } 
         }
-        console.log (sum/query.length)
-
-    return sum/query.length;
+    return (sum/query.length).toFixed(2);
 
 }
 

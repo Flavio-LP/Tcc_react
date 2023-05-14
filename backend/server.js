@@ -3,6 +3,7 @@ const express = require('express');
 const buscas = require('./buscas')
 const vento = require('./vento')
 const POTENCIA_PLACA = require('./potencia_placa')
+const POTENCIA_TURBINA = require('./potencia_turbina')
 let data;
 let data_anterior;
 const app = express();
@@ -57,11 +58,22 @@ app.post("/data", (req, res) => {
 
 app.get('/potencia_placa', async (req, res) => {
     res.header('Access-Control-Allow-Origin', '*');
-    let query = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    let query = 0
     if (data_anterior == data) {
         return res.status(201).json(query);
     } else {
-        query = await POTENCIA_PLACA();
+        query = await POTENCIA_PLACA(data);
+        return res.status(201).json(query);
+    }
+})
+
+app.get('/potencia_turbina', async (req, res) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    let query = 0
+    if (data_anterior == data) {
+        return res.status(201).json(query);
+    } else {
+        query = await POTENCIA_TURBINA(data);
         return res.status(201).json(query);
     }
 })

@@ -2,8 +2,9 @@ import './homepage.css'
 import React, { useEffect, useState } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-import axios, { Axios } from 'axios';
+import axios from 'axios';
 import api from '../Api/api_potencia_placa'
+import api1 from '../Api/api_potencia_tensao'
 
 export function HomePage() {
 	console.log('run')
@@ -16,23 +17,35 @@ export function HomePage() {
 
 		dia = value.getDate();
 	} if (parseInt(value.getMonth()) > 0 && parseInt(value.getMonth()) < 10) {
-		mês = '0' + value.getMonth()
+		let aux
+		aux = parseInt(value.getMonth()) + 1
+		mês = '0' + aux
+	} else {
+		let aux
+		aux = parseInt(value.getMonth()) + 1
+		mês = aux
 	}
-	let data = dia + '/' + '05' + '/' + value.getFullYear();
+	let data = dia + '/' + mês + '/' + value.getFullYear();
 	console.log(data)
 
-	
+
 	axios.post("http://localhost:3305/data", { Data_calendario: data })
 		.then().catch(erro => console.log(erro))
 
-	const [potencia_placa , setPotencia_placa] = useState()
-	
+	const [potencia_placa, setPotencia_placa] = useState()
+	const [potencia_turbina, setPotencia_turbina] = useState()
 
-		api.get("/")
+	api.get("/")
 		.then((response) => setPotencia_placa(response.data))
 		.catch((err) => {
 			console.error("ops! ocorreu um erro" + err);
 		});
+
+	/*api1.get("/")
+		.then((response) => setPotencia_turbina(response.data))
+		.catch((err) => {
+			console.error("ops! ocorreu um erro" + err);
+		});*/
 
 	return (
 		<div id='page'>
@@ -47,7 +60,7 @@ export function HomePage() {
 					</div>
 					<div class="subtitulos">
 						<ul>
-							<li>Média de Tensão:</li>
+							<li>Média de Tensão</li>
 							<li>Média de Corrente:</li>
 							<li>Média de potência:{potencia_placa}</li>
 						</ul>
@@ -64,7 +77,7 @@ export function HomePage() {
 						<ul>
 							<li>Média de Tensão:</li>
 							<li>Média de Corrente:</li>
-							<li>Média de potência:</li>
+							<li>Média de potência:{potencia_turbina}</li>
 						</ul>
 					</div>
 				</section>

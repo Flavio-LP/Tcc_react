@@ -28,7 +28,7 @@ const buscas = async(data) =>{
                                                 ' )'+
                                             ' LIMIT '+ 
                                                     '1 '
-                                            )
+                                                    )
         if (day[0][0] == undefined){
                 
                 query.push("0.00")
