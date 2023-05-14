@@ -2,11 +2,11 @@ import './homepage.css'
 import React, { useEffect, useState } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-import axios from 'axios';
+import axios, { Axios } from 'axios';
 import api from '../Api/api_potencia_placa'
 
 export function HomePage() {
-
+	console.log('run')
 	const [value, onChange] = useState(new Date());
 	let dia, mês;
 	if (parseInt(value.getDate()) > 0 && parseInt(value.getDate()) < 10) {
@@ -25,9 +25,10 @@ export function HomePage() {
 	axios.post("http://localhost:3305/data", { Data_calendario: data })
 		.then().catch(erro => console.log(erro))
 
-	const [potencia_placa = 0, setPotencia_placa] = useState()
-	api
-		.get("/potencia_placa")
+	const [potencia_placa , setPotencia_placa] = useState()
+	
+
+		api.get("/")
 		.then((response) => setPotencia_placa(response.data))
 		.catch((err) => {
 			console.error("ops! ocorreu um erro" + err);

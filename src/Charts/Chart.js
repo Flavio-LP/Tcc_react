@@ -4,18 +4,14 @@ import api from '../Api/api'
 import ApexChart from 'react-apexcharts';
 
 export default function Chart() {
-
     const [irr,setIrr] = useState()  
+    
     api
     .get("/")
     .then(( response) => setIrr(response.data))
     .catch((err) => {
       console.error("ops! ocorreu um erro" + err);
     });
-    
-    /*useEffect(() => {
-      
-    }, []);*/
 
 
 

@@ -8,6 +8,7 @@ import Chart_vento from './Charts/Chart_vento'
 
 
 function App() {
+
   return (
     <>
       <HomePage />

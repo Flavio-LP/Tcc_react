@@ -2,13 +2,14 @@
 const express = require('express');
 const buscas = require('./buscas')
 const vento = require('./vento')
-const POTENCIA_PLACA=require('./potencia_placa')
+const POTENCIA_PLACA = require('./potencia_placa')
 let data;
+let data_anterior;
 const app = express();
 
 app.use(express.json());
 
-app.use(function(req, res, next) { //allow cross origin requests
+app.use(function (req, res, next) { //allow cross origin requests
     res.setHeader("Access-Control-Allow-Methods", "POST, PUT, OPTIONS, DELETE, GET");
     res.header("Access-Control-Allow-Origin", "http://localhost:3000");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -18,31 +19,49 @@ app.use(function(req, res, next) { //allow cross origin requests
 
 const PORT = 3305;
 
-app.listen(PORT , () => { console.log (`Rodando na porta ${PORT}`)})
+app.listen(PORT, () => { console.log(`Rodando na porta ${PORT}`) })
 
 
 
-app.get('/' , async (req, res)=>{
-    res.header('Access-Control-Allow-Origin', '*');
-    const query = await buscas(data);
-    return res.status(201).json(query);
+app.get('/', async (req, res) => {
+    let query = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    if (data_anterior == data) {
+        return res.status(201).json(query);
+    } else {
+        query = await buscas(data);
+        return res.status(201).json(query);
+    }
+
 })
 
-app.get('/vento', async(req,res)=> {
+app.get('/vento', async (req, res) => {
+    let query = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    if (data_anterior == data) {
 
-    res.header('Access-Control-Allow-Origin', '*'); 
-    const query = await vento(data);
-    return res.status(201).json(query);
+        return res.status(201).json(query);
+    } else {
+        res.header('Access-Control-Allow-Origin', '*');
+        query = await vento(data);
+        return res.status(201).json(query);
+    }
 })
 
 app.post("/data", (req, res) => {
     data = req.body.Data_calendario
+    if (data_anterior == undefined) {
+        data_anterior = data
+    }
     return res.status(201).json(req.body);
-    
-  });
 
-  app.get('/potencia_placa', async(req,res)=> {
+});
+
+app.get('/potencia_placa', async (req, res) => {
     res.header('Access-Control-Allow-Origin', '*');
-    const query = await POTENCIA_PLACA(data);
-    return res.status(201).json(query);
+    let query = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    if (data_anterior == data) {
+        return res.status(201).json(query);
+    } else {
+        query = await POTENCIA_PLACA();
+        return res.status(201).json(query);
+    }
 })
