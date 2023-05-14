@@ -30,8 +30,7 @@ app.get('/' , async (req, res)=>{
 
 app.get('/vento', async(req,res)=> {
 
-    res.header('Access-Control-Allow-Origin', '*');
-    console.log('1')
+    res.header('Access-Control-Allow-Origin', '*'); 
     const query = await vento(data);
     return res.status(201).json(query);
 })
