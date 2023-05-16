@@ -3,14 +3,14 @@ const connection = require('./connection');
 let vetor = [6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
 
 
-const CORRENTE_PLACA = async(data) =>{
+const CORRENTE_TURBINA = async(data) =>{
     let query = []
     let cor,sum = 0,aux
 
     for (let index = 0; index < vetor.length; index++) {
 
       cor = await connection.execute(' SELECT '+
-                                                    'T.CORRENTE_PLACA AS CORRENTE_PLACA '+
+                                                    'T.CORRENTE_TURBINA AS CORRENTE_TURBINA '+
                                             'FROM ' +
                                                     'projeto_tcc T' +
                                             ' WHERE '+
@@ -33,13 +33,13 @@ const CORRENTE_PLACA = async(data) =>{
         if (cor[0][0] == undefined){
                 query.push("0.00")
         }else{
-                query.push((cor[0][0]['CORRENTE_PLACA']).toFixed(2))
-                aux = parseInt((cor[0][0]['CORRENTE_PLACA']).toFixed(2))
+                query.push((cor[0][0]['CORRENTE_TURBINA']))
+                aux = parseInt((cor[0][0]['CORRENTE_TURBINA']))
                 sum = sum + aux
         } 
         }
-    return (sum/query.length).toFixed(2);
+    return (sum/query.length).toFixed(7);
 
 }
 
-module.exports = CORRENTE_PLACA;
+module.exports = CORRENTE_TURBINA;

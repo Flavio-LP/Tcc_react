@@ -4,6 +4,10 @@ const buscas = require('./buscas')
 const vento = require('./vento')
 const POTENCIA_PLACA = require('./potencia_placa')
 const POTENCIA_TURBINA = require('./potencia_turbina')
+const TENSAO_PLACA = require('./tensao_placa')
+const CORRENTE_PLACA = require('./corrente_placa')
+const CORRENTE_TURBINA = require('./corrente_turbina')
+const TENSAO_TURBINA = require('./tensao_turbina')
 let data;
 let data_anterior;
 const app = express();
@@ -58,4 +62,28 @@ app.get('/potencia_turbina', async (req, res) => {
         query = await POTENCIA_TURBINA(data);
         return res.status(201).json(query);
     }
+})
+
+app.get('/tensao_placa',async (req,res) => {
+    let query =0
+    query = await TENSAO_PLACA(data)
+    return res.status(201).json(query)
+})
+
+app.get('/corrente_placa',async (req,res) => {
+    let query =0
+    query = await CORRENTE_PLACA(data)
+    return res.status(201).json(query)
+})
+
+app.get('/tensao_turbina',async (req,res) => {
+    let query =0
+    query = await TENSAO_TURBINA(data)
+    return res.status(201).json(query)
+})
+
+app.get('/corrente_turbina',async (req,res) => {
+    let query =0
+    query = await CORRENTE_TURBINA(data)
+    return res.status(201).json(query)
 })

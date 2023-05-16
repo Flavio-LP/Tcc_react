@@ -4,7 +4,11 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import axios from 'axios';
 import api from '../Api/api_potencia_placa'
-import api1 from '../Api/api_potencia_tensao'
+import api_pt from '../Api/api_potencia_turbina'
+import api_tp from '../Api/api_tensao_placa'
+import api_cp from '../Api/api_corrente_placa'
+import api_ct from '../Api/api_corrente_turbina'
+import api_tt from '../Api/api_tensao_turbina'
 
 export function HomePage() {
 	console.log('run')
@@ -33,6 +37,11 @@ export function HomePage() {
 
 	const [potencia_placa, setPotencia_placa] = useState()
 	const [potencia_turbina, setPotencia_turbina] = useState()
+	const [tensao_placa, setTensao_placa] = useState()
+	const [corrente_placa, setCorrente_placa] = useState()
+	const [tensao_turbina, setTensao_turbina] = useState()
+	const [corrente_turbina, setCorrente_turbina] = useState()
+
 
 	useEffect(()=>{
 
@@ -45,13 +54,35 @@ export function HomePage() {
 			console.error("ops! ocorreu um erro" + err);
 		});
 
-		api1.get("/")
+		api_pt.get("/")
 		.then((response) => setPotencia_turbina(response.data))
 		.catch((err) => {
 			console.error("ops! ocorreu um erro" + err);
 		});
 
+		api_tp.get("/")
+		.then((response) => setTensao_placa(response.data))
+		.catch((err) => {
+			console.error("ops! ocorreu um erro" + err);
+		});
 
+		api_cp.get("/")
+		.then((response) => setCorrente_placa(response.data))
+		.catch((err) => {
+			console.error("ops! ocorreu um erro" + err);
+		});
+
+		api_tt.get("/")
+		.then((response) => setTensao_turbina(response.data))
+		.catch((err) => {
+			console.error("ops! ocorreu um erro" + err);
+		});
+
+		api_ct.get("/")
+		.then((response) => setCorrente_turbina(response.data))
+		.catch((err) => {
+			console.error("ops! ocorreu um erro" + err);
+		});
 	})
 	
 	/*api1.get("/")
@@ -73,9 +104,9 @@ export function HomePage() {
 					</div>
 					<div class="subtitulos">
 						<ul>
-							<li>Média de Tensão</li>
-							<li>Média de Corrente:</li>
-							<li>Média de potência:{potencia_placa}</li>
+							<li>Média de Tensão: {tensao_placa}</li>
+							<li>Média de Corrente: {corrente_placa}</li>
+							<li>Média de Potência:{potencia_placa} </li>
 						</ul>
 					</div>
 				</section>
@@ -88,9 +119,9 @@ export function HomePage() {
 					</div>
 					<div class="subtitulos">
 						<ul>
-							<li>Média de Tensão:</li>
-							<li>Média de Corrente:</li>
-							<li>Média de potência:{potencia_turbina}</li>
+							<li>Média de Tensão: {tensao_turbina}</li>
+							<li>Média de Corrente: {corrente_turbina}</li>
+							<li>Média de Potência:{potencia_turbina}</li>
 						</ul>
 					</div>
 				</section>

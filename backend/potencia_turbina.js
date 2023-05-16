@@ -5,7 +5,7 @@ let vetor = [6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
 
 const POTENCIA_TURBINA = async(data) =>{
     let query = []
-    let pot,sum = 0,aux
+    let pot,sum = 0
 
     for (let index = 0; index < vetor.length; index++) {
 
@@ -32,8 +32,8 @@ const POTENCIA_TURBINA = async(data) =>{
         if (pot[0][0] == undefined){
                 query.push("0.00")
         }else{
-                query.push((pot[0][0]['POTENCIA_TURBINA']).toFixed(2))
-                aux = parseInt((pot[0][0]['POTENCIA_TURBINA']).toFixed(2))
+                query.push((pot[0][0]['POTENCIA_TURBINA']))
+                aux = parseInt((pot[0][0]['POTENCIA_TURBINA']))
                 sum = sum + aux
         } 
         }
