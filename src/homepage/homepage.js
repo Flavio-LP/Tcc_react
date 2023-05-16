@@ -29,18 +29,31 @@ export function HomePage() {
 	console.log(data)
 
 
-	axios.post("http://localhost:3305/data", { Data_calendario: data })
-		.then().catch(erro => console.log(erro))
+	
 
 	const [potencia_placa, setPotencia_placa] = useState()
 	const [potencia_turbina, setPotencia_turbina] = useState()
 
-	api.get("/")
+	useEffect(()=>{
+
+		axios.post("http://localhost:3305/data", { Data_calendario: data })
+		.then().catch(erro => console.log(erro))
+
+		api.get("/")
 		.then((response) => setPotencia_placa(response.data))
 		.catch((err) => {
 			console.error("ops! ocorreu um erro" + err);
 		});
 
+		api1.get("/")
+		.then((response) => setPotencia_turbina(response.data))
+		.catch((err) => {
+			console.error("ops! ocorreu um erro" + err);
+		});
+
+
+	})
+	
 	/*api1.get("/")
 		.then((response) => setPotencia_turbina(response.data))
 		.catch((err) => {

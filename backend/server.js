@@ -26,45 +26,27 @@ app.listen(PORT, () => { console.log(`Rodando na porta ${PORT}`) })
 
 app.get('/', async (req, res) => {
     let query = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    if (data_anterior == data) {
-        return res.status(201).json(query);
-    } else {
         query = await buscas(data);
         return res.status(201).json(query);
-    }
 
 })
 
 app.get('/vento', async (req, res) => {
     let query = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    if (data_anterior == data) {
-
-        return res.status(201).json(query);
-    } else {
-        res.header('Access-Control-Allow-Origin', '*');
         query = await vento(data);
         return res.status(201).json(query);
-    }
 })
 
 app.post("/data", (req, res) => {
     data = req.body.Data_calendario
-    if (data_anterior == undefined) {
-        data_anterior = data
-    }
-    return res.status(201).json(req.body);
+    return res.status(201).json(data);
 
 });
 
 app.get('/potencia_placa', async (req, res) => {
-    res.header('Access-Control-Allow-Origin', '*');
     let query = 0
-    if (data_anterior == data) {
-        return res.status(201).json(query);
-    } else {
         query = await POTENCIA_PLACA(data);
         return res.status(201).json(query);
-    }
 })
 
 app.get('/potencia_turbina', async (req, res) => {
