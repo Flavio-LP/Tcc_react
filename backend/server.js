@@ -9,7 +9,6 @@ const CORRENTE_PLACA = require('./corrente_placa')
 const CORRENTE_TURBINA = require('./corrente_turbina')
 const TENSAO_TURBINA = require('./tensao_turbina')
 let data;
-let data_anterior;
 const app = express();
 
 app.use(express.json());
@@ -56,12 +55,8 @@ app.get('/potencia_placa', async (req, res) => {
 app.get('/potencia_turbina', async (req, res) => {
     res.header('Access-Control-Allow-Origin', '*');
     let query = 0
-    if (data_anterior == data) {
-        return res.status(201).json(query);
-    } else {
         query = await POTENCIA_TURBINA(data);
         return res.status(201).json(query);
-    }
 })
 
 app.get('/tensao_placa',async (req,res) => {
