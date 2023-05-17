@@ -22,7 +22,7 @@ app.use(function (req, res, next) { //allow cross origin requests
     next();
 });
 
-const PORT = 3305;
+const PORT = 3000;
 
 app.listen(PORT, () => { console.log(`Rodando na porta ${PORT}`) })
 
