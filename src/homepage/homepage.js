@@ -45,7 +45,7 @@ export function HomePage() {
 
 	useEffect(()=>{
 
-		axios.post("http://localhost:3305/data", { Data_calendario: data })
+		axios.post("https://tccbackend-production.up.railway.app/data", { Data_calendario: data })
 		.then().catch(erro => console.log(erro))
 
 		api.get("/")
@@ -94,7 +94,7 @@ export function HomePage() {
 	return (
 		<div id='page'>
 			<header>
-				<h1>Título da Página</h1>
+				<h1>MONITORAMENTO DA GERAÇÃO DE ENERGIA ELÉTRICA NO MODELO HÍBRIDO, SOLAR E EÓLICO</h1>
 			</header>
 
 			<main>
