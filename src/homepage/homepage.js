@@ -104,9 +104,9 @@ export function HomePage() {
 					</div>
 					<div class="subtitulos">
 						<ul>
-							<li>Média de Tensão: {tensao_placa}</li>
-							<li>Média de Corrente: {corrente_placa}</li>
-							<li>Média de Potência:{potencia_placa} </li>
+							<li>Média de Tensão: {tensao_placa} V</li>
+							<li>Média de Corrente: {corrente_placa} mA</li>
+							<li>Média de Potência:{potencia_placa} mW</li>
 						</ul>
 					</div>
 				</section>
@@ -119,9 +119,9 @@ export function HomePage() {
 					</div>
 					<div class="subtitulos">
 						<ul>
-							<li>Média de Tensão: {tensao_turbina}</li>
-							<li>Média de Corrente: {corrente_turbina}</li>
-							<li>Média de Potência:{potencia_turbina}</li>
+							<li>Média de Tensão: {tensao_turbina} V</li>
+							<li>Média de Corrente: {corrente_turbina} mA</li>
+							<li>Média de Potência: {potencia_turbina} mW</li>
 						</ul>
 					</div>
 				</section>
