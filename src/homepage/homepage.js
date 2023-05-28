@@ -11,7 +11,6 @@ import api_ct from '../Api/api_corrente_turbina'
 import api_tt from '../Api/api_tensao_turbina'
 
 export function HomePage() {
-	console.log('run')
 	const [value, onChange] = useState(new Date());
 	let dia, mês;
 	if (parseInt(value.getDate()) > 0 && parseInt(value.getDate()) < 10) {
@@ -93,6 +92,9 @@ export function HomePage() {
 
 	return (
 		<div id='page'>
+			<head>
+			<title>Dashboard TCC</title>
+			</head>
 			<header>
 				<h1>MONITORAMENTO DA GERAÇÃO DE ENERGIA ELÉTRICA NO MODELO HÍBRIDO, SOLAR E EÓLICO</h1>
 			</header>
