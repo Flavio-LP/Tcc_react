@@ -82,7 +82,7 @@ export function HomePage() {
 		.catch((err) => {
 			console.error("ops! ocorreu um erro" + err);
 		});
-	})
+	},[])
 	
 	/*api1.get("/")
 		.then((response) => setPotencia_turbina(response.data))
